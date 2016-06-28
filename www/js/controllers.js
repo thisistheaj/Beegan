@@ -26,9 +26,25 @@ angular.module('starter.controllers', [])
     }, function (error) {
       alert('error');
     });
-    
+
   })
 
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-});
+  .controller('PlaylistCtrl', function ($scope, $stateParams, $http) {
+
+    $scope.company = {
+      company_name: $stateParams.name,
+      products: []
+    };
+
+    $http({
+      method: 'GET',
+      url: 'http://www.barnivore.com/company/' + $stateParams.id + '.json'
+    }).then(function (response) {
+      $scope.company = response.data.company;
+
+    }, function (error) {
+      alert('error');
+    });
+
+  });
