@@ -1,9 +1,20 @@
 <ion-view view-title="{{listType}}">
-<ion-content>
+  <ion-content>
     <ion-list>
-      <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
-        {{playlist.title}}
-      </ion-item>
+      <span ng-repeat="brewery in breweries">
+        <ion-item class="item item-balanced" ng-show="(brewery.company.red_yellow_green === 'Green')"
+                  ui-sref="app.single({id:brewery.company.id, name:brewery.company.company_name})">
+          {{brewery.company.company_name}}
+        </ion-item>
+        <ion-item class="item item-energized" ng-show="(brewery.company.red_yellow_green === 'Yellow')"
+                  ui-sref="app.single({id:brewery.company.id, name:brewery.company.company_name})">
+          {{brewery.company.company_name}}
+        </ion-item>
+        <ion-item class="item item-assertive" ng-show="(brewery.company.red_yellow_green === 'Red')"
+                  ui-sref="app.single({id:brewery.company.id, name:brewery.company.company_name})">
+          {{brewery.company.company_name}}
+        </ion-item>
+      </span>
     </ion-list>
   </ion-content>
 </ion-view>

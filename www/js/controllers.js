@@ -17,6 +17,16 @@ angular.module('starter.controllers', [])
     $scope.breweries = [];
     $scope.listType = $stateParams.listType;
 
+    $http({
+      method: 'GET',
+      url: 'http://www.barnivore.com/' + $scope.listType + '.json'
+    }).then(function (response) {
+      $scope.breweries = response.data;
+
+    }, function (error) {
+      alert('error');
+    });
+    
   })
 
 
